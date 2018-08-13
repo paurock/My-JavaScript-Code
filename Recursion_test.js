@@ -25,7 +25,7 @@ let makeTree = (categories, parent) => {
   return node 
 }
 
-document.write 
+document.write{
 	JSON.stringify(
 		makeTree(categories, null)
     , null, 2)
