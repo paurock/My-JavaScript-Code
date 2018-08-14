@@ -1,6 +1,6 @@
-const countDown = value => {
-	document.write(`${value} <br>`) 
-	return (value>0) ?	countDown(value-1) : value
+const countDown = (value, fn) => {
+	fn(value) 
+	return (value>0) ?	countDown(value-1, fn) : value
 }
 
-countDown(100)
+countDown(100, value => document.write(`${value} <br>`) )
