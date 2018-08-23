@@ -1,27 +1,35 @@
 const interval = () => 1000
-const currentDate = () => new Date()
-const log = (result) => console.log(result)
+const i = () => 0
+const nowDate = () => new Date()
 const clear = () => console.clear()
+const log = result => console.log(result)
 			
-const normalDate = (currentDate) => ({				
-	hours:  currentDate.getHours(),
-	minutes:  currentDate.getMinutes(),
-	seconds:  currentDate.getSeconds()		
+					
+const hms = (nowDate) => ({
+	h: nowDate.getHours(),
+	m: nowDate.getMinutes(),
+	s: nowDate.getSeconds()
 })
+				
+const pmam = (arr, key) => {
+  return (arr.key > 12) ?  "PM"
+  : "AM"
+}			
 			
-const addZeros = key => clockTime =>
-	({
-		...clockTime,
-		[key]: (clockTime[key] < 10) ?
-		"0" + clockTime[key] :
-		clockTime[key]
-})
-
-							 
-const compose = arr => val => arr.reduce((fn1, fn2) => fn2(fn1), val)	
-const ddc = dubbleDigitClock = compose([addZeros("hours"), addZeros("minutes"), addZeros("seconds")])
-const readyClocks = ddc =>  `${ddc.hours}:${ddc.minutes}:${ddc.seconds}`		
-const showNormalDate = compose([clear, currentDate, normalDate, dubbleDigitClock, readyClocks, log])
-const tickingClock = () => setInterval(showNormalDate, interval())	
-
-tickingClock()
+const hhmmss = arr => arr.map(x => {
+	return (x<10) ? "0" + x 
+  : x			
+})		
+						 
+			
+const civilianClock = arr => {
+	return (arr[0] >12) ? `${arr[0]-12} : ${arr[1]} : ${arr[2]} ${arr[3]}` : 
+  `${arr[0]-12} : ${arr[1]} : ${arr[2]} ${arr[3]}` 			
+}
+			
+			 
+const compose = (fns) => val => fns.reduce((fn1, fn2) => fn2(fn1), val)
+const composed =  compose([clear, nowDate, hms, pmam, hhmmss, civilianClock, log ])
+const ticking = () => setInterval(composed, interval())
+			
+ticking()
