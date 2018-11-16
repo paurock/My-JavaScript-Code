@@ -27,11 +27,11 @@ class SlideShow extends Component {
 		total: Children.count(children)	
 			})
 		}		
-		componentWillUnmount() {
+	componentWillUnmount() {
 			clearInterval(interval)			
 			}
 			
-		showNext = () => {
+	showNext = () => {
 			const {current, total} = this.state
 			this.setState({
 				current: current+1 === total ? 0 : current+1 
