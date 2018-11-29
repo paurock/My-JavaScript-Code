@@ -74,7 +74,7 @@ class Window extends Component {
 			<a href="#" onClick={this.openWindow}>{flag}</a>
 			<div className={(toggle) ? "show" : "hide"}>
 				<div>
-					<a href="#" onClick={this.openWindow} title="Закрыть" className="close">{flag}x</a>
+					<a href="#" onClick={this.openWindow} title="Закрыть" className="close">{flag}X</a>
 					<h2>Модальное окно</h2>
 					<p>Пример простого модального окна, которое может быть создано с использованием CSS3.</p>
 					<p>Его можно использовать в широком диапазоне, начиная от вывода сообщений и заканчивая формой регистрации.</p>
