@@ -52,7 +52,7 @@ const { render } = ReactDOM
 
 class Tabs extends Component {
 	state = {
-	tabs: [
+	data: [
 		{
 			tabName: 'Первая вкладка', 
 			links: ["Содержимое 1", "Содержимое 2", "Содержимое 3", "Содержимое 4"]
@@ -64,44 +64,45 @@ class Tabs extends Component {
 		{
 			tabName:'Третья вкладка', 
 			links: ["Содержимое 9", "Содержимое 10", "Содержимое 11", "Содержимое 12"]
-		}
-	], 
+		},		
+		
+	],	
 	number:0, 
 	toggle: false
 }
 
 	doClick = (e) => {
-	console.log('click', e.target.id )
-		this.setState(state => {
-			toggle:!this.state.toggle	
-		})		
+	e.persist()
+	this.setState(prevState =>({number:e.target.id, toggle: true }))
+	console.log(this.state)
 	}
+	
 	render() {
 	
-		const {tabs} = this.state
+		const {data} = this.state
 		const {number} = this.state
 		const {toggle} = this.state
 		//console.log(tabs[0].links)
 		return <div >
-			<Tab tabs={tabs} doClick = {(e) => this.doClick(e)}/>
+			<Tab data={data} doClick = {this.doClick.bind(this)}></Tab>
 				{(toggle) ? 
-				<Content tabs={tabs} number={number}/> :				
+				<Content data={data} number={number}/> :				
 				<div>Nothing</div>}
 		</div>			
 	}
 }
 
-const Tab = ({tabs, doClick=f=>f}) =><div className='tabs'> 
+const Tab = ({data, doClick=f=>f}) =><div className='tabs'> 
 	<ul>
-	{tabs.map( (tab, i) => 
+	{data.map( (tab, i) => 
 		<li key={i} id={i} onClick={(e)=>doClick(e)}>{tab.tabName}</li>
 	)}
 	</ul>	
 </div>
 
 
-const Content = ({tabs, number}) => {
-	const SpecificTab = tabs[number].links
+const Content = ({data, number}) => {
+	const SpecificTab = data[number].links
 	return SpecificTab.map((item, i)=> <div key={i}>{item}</div>
 	)	
 }
