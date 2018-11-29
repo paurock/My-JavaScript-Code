@@ -8,7 +8,19 @@
 <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 <style type="text/css">
 .hide {display:none;}
-.show {display:block;}
+.show {display:block;
+	display: block;
+    pointer-events: auto;
+	width: 400px;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: #fff;
+	background: -moz-linear-gradient(#fff, #999);
+	background: -webkit-linear-gradient(#fff, #999);
+	background: -o-linear-gradient(#fff, #999);	
+	}
 </style>
 <title>Modal</title>
 </head>
@@ -20,23 +32,28 @@ const { render } = ReactDOM
 
 class Window extends Component {	
 		state = {
-		toggle: false		
+		toggle: false, 
+		openMessage: false	 
 		}
 	
 	openWindow = (e) => {
 		e.preventDefault()
 		this.setState(state => ({
-			toggle: !state.toggle		
-			}))
+			toggle: !state.toggle,
+			openMessage:  !state.openMessage
+		}))
 	console.log(this.state)	
 		}
 	render() {
-		const {toggle} =this.state 
+		const {toggle} =this.state 		
+		const {openMessage} = this.state
+		let flag
+		(openMessage) ? flag = null : flag = "Открыть диалоговое окно"		
 		return <div>		
-			<a href="#" onClick={this.openWindow}>Открыть модальное окно</a>
+			<a href="#" onClick={this.openWindow}>{flag}</a>
 			<div className={(toggle) ? "show" : "hide"}>
 				<div>
-					<a title="Закрыть" className="close">X</a>
+					<a href="#" onClick={this.openWindow} title="Закрыть" className="close">{flag}X</a>
 					<h2>Модальное окно</h2>
 					<p>Пример простого модального окна, которое может быть создано с использованием CSS3.</p>
 					<p>Его можно использовать в широком диапазоне, начиная от вывода сообщений и заканчивая формой регистрации.</p>
