@@ -21,6 +21,27 @@
 	background: -webkit-linear-gradient(#fff, #999);
 	background: -o-linear-gradient(#fff, #999);	
 	}
+.close {
+	background: #606061;
+	color: #FFFFFF;
+	line-height: 25px;
+	position: absolute;
+	right: -12px;
+	text-align: center;
+	top: -10px;
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	-moz-box-shadow: 1px 1px 3px #000;
+	-webkit-box-shadow: 1px 1px 3px #000;
+	box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover { background: #00d9ff; }
+
 </style>
 <title>Modal</title>
 </head>
@@ -53,7 +74,7 @@ class Window extends Component {
 			<a href="#" onClick={this.openWindow}>{flag}</a>
 			<div className={(toggle) ? "show" : "hide"}>
 				<div>
-					<a href="#" onClick={this.openWindow} title="Закрыть" className="close">{flag}X</a>
+					<a href="#" onClick={this.openWindow} title="Закрыть" className="close">{flag}x</a>
 					<h2>Модальное окно</h2>
 					<p>Пример простого модального окна, которое может быть создано с использованием CSS3.</p>
 					<p>Его можно использовать в широком диапазоне, начиная от вывода сообщений и заканчивая формой регистрации.</p>
