@@ -14,10 +14,6 @@
 </head>
 <body>
 <div id="react-container"></div>
-
-
-
-
 <script type="text/babel">
 const { Component } = React
 const { render } = ReactDOM
