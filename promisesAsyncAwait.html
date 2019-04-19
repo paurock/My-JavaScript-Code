@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+<meta charset="utf-8">
+<script src="https://unpkg.com/redux@3.7.2/dist/redux.min.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<title>Testing sort</title>
+</head>
+<body>
+<div id="react-container"></div>
+<script type="text/babel">
+
+function makeRequest(location) {
+	return new Promise((resolve, reject) => {
+		//console.log(`1 fn`)
+		if (location === 'Google') {
+			resolve('Google says Hi!')
+			} else {
+			reject('We talk to Google only')
+			}
+		}
+	)
+}
+
+function processRequest(response) {
+	return new Promise((resolve, reject) => {
+			//console.log('2 fn')
+			resolve(`Response information: ${response}`)
+			}
+		)
+}
+
+makeRequest('Google')
+	.then(response=> processRequest(response))
+	.then(processedResponse => console.log(processedResponse))
+	.catch(err=>console.log('Error ' + err))
+	
+/* async function doWork() {
+	const response = await makeRequest('Goggle')
+	console.log('Response received (g s h)')
+	const processedResponse = await processRequest(response)
+	console.log(processedResponse)
+	} */
+</script>
+</body>
+</html>
