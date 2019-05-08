@@ -11,8 +11,8 @@ const hms = (nowDate) => ({
 	s: nowDate.getSeconds()
 })
 				
-const pmam = (arr, key) => {
-  return (arr.key > 12) ?  "PM"
+const pmam = (obj, key) => {
+  return (obj.key > 12) ?  "PM"
   : "AM"
 }			
 			
